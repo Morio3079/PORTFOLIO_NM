@@ -7,72 +7,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const desktop = document.getElementById('desktop');
 
     const logs = [
-        "> BOOTING UITOPIA_OS kernel v1.0.7...",
+        "> BOOTING NM_OS kernel v2.0.1...",
         "> LOADING ENCRYPTION MODULE... OK",
         "> SEARCHING FOR AUTHORIZED USERS...",
         "> EXTERNAL ACCESS DETECTED."
     ];
 
-    const passText = "••••••••••••"; // 入力される伏せ字
+ const passText = "************"; // 入力される伏せ字
     let logIdx = 0;
 
-    // 1. ログの順次表示
+    // ログ表示
     function showLogs() {
         if (logIdx < logs.length) {
             const p = document.createElement('p');
             p.textContent = logs[logIdx];
             logContainer.appendChild(p);
             logIdx++;
-            setTimeout(showLogs, 500);
+            setTimeout(showLogs, 400);
         } else {
-            setTimeout(showForm, 500);
+            setTimeout(() => { loginForm.style.display = 'block'; typePassword(); }, 500);
         }
     }
 
-    // 2. ログインフォーム出現
-    function showForm() {
-        loginForm.style.display = 'block';
-        setTimeout(typePassword, 800);
-    }
-
-    // 3. パスワード自動タイピング
+    // パスワード自動入力
     let charIdx = 0;
     function typePassword() {
         if (charIdx < passText.length) {
             passwordField.textContent += passText[charIdx];
             charIdx++;
-            setTimeout(typePassword, 120);
+            setTimeout(typePassword, 80);
         } else {
-            setTimeout(verify, 600);
+            verify();
         }
     }
 
-    // 4. 認証中演出
     function verify() {
         authStatus.textContent = "VERIFYING...";
         setTimeout(() => {
-            authStatus.style.color = "#fff";
+            authStatus.style.color = "var(--color-white)";
             authStatus.textContent = "ACCESS GRANTED. WELCOME.";
-            setTimeout(enterDesktop, 1200);
-        }, 1500);
+            setTimeout(enterDesktop, 800);
+        }, 1200);
     }
 
-    // 5. デスクトップへ移行
     function enterDesktop() {
         bootScreen.style.opacity = '0';
-        desktop.classList.remove('hidden');
         setTimeout(() => {
             bootScreen.style.display = 'none';
-        }, 1500);
+            desktop.classList.remove('hidden');
+        }, 1000);
     }
 
-    // 時計の更新
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('clock').textContent = now.toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
+    // クロック
+    setInterval(() => {
+        document.getElementById('clock').textContent = new Date().toLocaleTimeString();
+    }, 1000);
 
-    // 実行開始
+    // 進化バイナリエフェクト (Works)
+    const workNodes = document.querySelectorAll('.work-node');
+    workNodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            const techTag = node.querySelector('.tech-tag');
+            const original = techTag.textContent;
+            let count = 0;
+            const interval = setInterval(() => {
+                techTag.textContent = techTag.textContent.split("").map(() => Math.floor(Math.random()*2)).join("");
+                if(count++ > 10) { clearInterval(interval); techTag.textContent = original; }
+            }, 50);
+        });
+    });
+
     showLogs();
 });

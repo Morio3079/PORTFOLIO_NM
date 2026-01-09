@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTFOLIO_NM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="scanline"></div>
 
     <div id="boot-screen" class="overlay">
         <div class="boot-container">
             <div id="boot-log" class="boot-log"></div>
-            
             <div id="login-form" class="login-form" style="display: none;">
+                <p class="sys-msg">-----------------------------------</p>
+                <p class="sys-msg">USER_ID:GUEST_VISITOR</p>
+                <p class="sys-msg">PASSWORD</p>
                 <div class="input-group">
-                    <span class="label">USER_ID:</span>
-                    <span class="val">GUEST_VISITOR</span>
-                </div>
-                <div class="input-group">
-                    <span class="label">PASSWD:</span>
-                    <span class="val">
-                        <span id="password-field"></span><span class="cursor"></span>
-                    </span>
+                    <span id="password-field"></span><span class="cursor"></span>
                 </div>
                 <div id="auth-status" class="auth-status"></div>
             </div>
@@ -29,44 +27,101 @@
     </div>
 
     <main id="desktop" class="hidden">
-        <div class="grid-overlay"></div>
-
-        <header class="top-bar">
-            <div class="system-info">
-                <span class="os-name">NM OS v1.0.7</span>
-                <span class="status-dot"></span>
-            </div>
-            <div id="clock" class="clock">00:00:00</div>
+        <div class="grid-bg"></div>
+        
+        <header class="top-nav">
+            <div class="sys-tag">NETWORK_SESSION: <span class="accent">STABLE</span></div>
+            <div class="hazard-ticker">VERSION: NM_PORTFOLIO v2.0.1</div>
+            <div id="clock">00:00:00</div>
         </header>
 
-        <section class="hero">
-            <h1 class="glitch-title" data-text="UITOPIA">Morio Nagata</h1>
-            <p class="sub-text">Welcome to the Unconfirmed Files.</p>
-        </section>
-
-        <div class="window">
-            <div class="window-header">
-                <div class="window-controls">
-                    <span class="dot close"></span>
-                    <span class="dot minimize"></span>
-                    <span class="dot maximize"></span>
+        <div class="scroll-container">
+            <section class="hero-frame">
+                <div class="glitch-box">
+                    <h1 class="main-title">MORIO NAGATA</h1>
+                    <p class="attribute-tag">TYPE: IT_ENGINEER // ATTRIBUTE: NON_ATTRIBUTE // LEVEL: ROOKIE</p>
                 </div>
-                <div class="window-title">README.txt</div>
-            </div>
-            <div class="window-content">
-                <h2>Hello, World.</h2>
-                <p>これは自動ログイン演出を搭載したポートフォリオのベースです。</p>
-                <p>OSライクなデジタルで透明感のあるデザインを目指しています。</p>
-                <hr>
-                <p>SCROLL TO EXPLORE MORE _</p>
+            </section>
+
+            <div class="content-wrapper">
+                <section class="digi-window" id="about">
+                    <div class="window-bar">
+                        <span class="bar-title">NODE_01: PROFILE_DATA</span>
+                        <span class="hazard-badge">⚠ HAZARD</span>
+                    </div>
+                    <div class="window-body">
+                        <h2>長田 壮央（Morio Nagata）</h2>
+                        <p class="lead-text">※要変更※<br>ユーザー体験を重視し、スケーラブルなWebアプリケーションを構築します。</p>
+                        <p>Webサービス開発において、フロントエンドからインフラ構築まで一貫した対応が可能です。</p>
+                    </div>
+                </section>
+
+                <section class="digi-window" id="skills">
+                    <div class="window-bar">
+                        <span class="bar-title">NODE_02: SPEC_PARAMETER</span>
+                    </div>
+                    <div class="window-body">
+                        <div class="skill-flex">
+                            <div class="skill-col">
+                                <h3>SKILLS</h3>
+                                <div class="skill-item">HTML/CSS<div class="bar"><div class="fill" style="width: 40%;"></div></div></div>
+                                <div class="skill-item">Excel VBA<div class="bar"><div class="fill" style="width: 30%;"></div></div></div>
+                                <div class="skill-item">Python<div class="bar"><div class="fill" style="width: 10%;"></div></div></div>
+                            </div>
+                            <div class="skill-col">
+                                <h3>CERTIFICATIONS</h3>
+                                <ul class="cert-list">
+                                    <li>VBA Expert Excel VBA Basic</li>
+                                    <li>Python 3 Certified Engineer Basic</li>
+                                    <li>Oracle Certified Java Programmer Bronze</li>
+                                    <li>AWS Certified Cloud Practitioner</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="digi-window" id="works">
+                    <div class="window-bar">
+                        <span class="bar-title">NODE_03: ARCHIVE_PROJECTS</span>
+                    </div>
+                    <div class="window-body">
+                        <div class="work-node">
+                            <div class="evo-ring"></div>
+                            <h3>Webアプリ名ver1</h3>
+                            <p>アプリの概要や説明をここに記述します。</p>
+                            <p class="tech-tag">TECH_STACK: Language, Environment</p>
+                            <a href="#" class="btn-link">View on GitHub</a>
+                        </div>
+                        <div class="work-node">
+                            <div class="evo-ring"></div>
+                            <h3>リアルタイムチャットツール</h3>
+                            <p>WebSocketを使用した、低遅延なグループチャットアプリケーションです。</p>
+                            <p class="tech-tag">TECH_STACK: Node.js, Socket.io</p>
+                            <a href="#" class="btn-link">View on GitHub</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="digi-window" id="contact">
+                    <div class="window-bar">
+                        <span class="bar-title">NODE_04: SIGNAL_GATE</span>
+                    </div>
+                    <div class="window-body center">
+                        <p>Email: <span class="accent">sample@email.com</span></p>
+                        <div class="social-links">
+                            <a href="#">GitHub</a> / <a href="#">Instagram</a> / <a href="#">Facebook</a>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
 
-        <nav class="dock">
-            <div class="dock-item"><span>HOME</span></div>
-            <div class="dock-item"><span>WORKS</span></div>
-            <div class="dock-item"><span>ABOUT</span></div>
-            <div class="dock-item"><span>LINK</span></div>
+        <nav class="bottom-dock">
+            <a href="#about" class="dock-btn">ABOUT</a>
+            <a href="#skills" class="dock-btn">SKILLS</a>
+            <a href="#works" class="dock-btn">WORKS</a>
+            <a href="#contact" class="dock-btn">CONTACT</a>
         </nav>
     </main>
 
