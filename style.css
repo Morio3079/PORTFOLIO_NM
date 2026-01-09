@@ -1,0 +1,114 @@
+:root {
+    --digi-cyan: #00f2ff;
+    --digi-orange: #ff4d00;
+    --bg-black: #010409;
+    --panel-bg: rgba(2, 12, 20, 0.9);
+    --font-main: 'Share Tech Mono', monospace;
+    --font-ui: 'Orbitron', sans-serif;
+}
+
+/* 走査線 */
+.scanline {
+    position: fixed; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none; z-index: 10000;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: #e0e0e0;
+    font-family: var(--font-main);
+    margin: 0; overflow: hidden;
+}
+
+/* 起動画面 */
+.overlay {
+    position: fixed; inset: 0; background: #000;
+    z-index: 9999; display: flex; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+
+.boot-container { width: 400px; font-size: 0.9rem; color: var(--digi-cyan); }
+.cursor { border-left: 8px solid var(--digi-cyan); animation: blink 0.8s infinite; }
+
+/* 背景 */
+.grid-bg {
+    position: fixed; inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+}
+
+/* ナビゲーション */
+.top-nav {
+    display: flex; justify-content: space-between; padding: 10px 20px;
+    background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--digi-cyan);
+    font-family: var(--font-ui); font-size: 0.7rem;
+}
+
+.accent { color: var(--digi-cyan); text-shadow: 0 0 8px var(--digi-cyan); }
+
+/* コンテンツレイアウト */
+.scroll-container { height: calc(100vh - 50px); overflow-y: auto; padding-bottom: 100px; }
+.content-wrapper { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+.hero-frame { height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.main-title { font-family: var(--font-ui); font-size: 3.5rem; margin: 0; color: #fff; }
+
+/* ウィンドウデザイン */
+.digi-window {
+    margin-bottom: 40px; background: var(--panel-bg);
+    border: 1px solid var(--digi-cyan);
+    clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+
+.window-bar {
+    background: rgba(0, 242, 255, 0.2); padding: 5px 15px;
+    display: flex; justify-content: space-between; font-family: var(--font-ui); font-size: 0.7rem;
+}
+
+.hazard-badge { color: var(--digi-orange); font-weight: bold; }
+.window-body { padding: 30px; }
+
+/* 進化演出 (Works) */
+.work-node {
+    position: relative; padding: 20px; border: 1px solid rgba(0, 242, 255, 0.2);
+    margin-bottom: 20px; transition: 0.4s; overflow: hidden;
+}
+
+.work-node:hover {
+    border-color: var(--digi-cyan); transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+}
+
+/* 進化の光輪 */
+.work-node::before {
+    content: "0101 EVOLUTION 0101 DIGITIZE";
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem; font-weight: 900; color: rgba(0, 242, 255, 0.03);
+    white-space: nowrap; opacity: 0; pointer-events: none;
+}
+
+.work-node:hover::before { opacity: 1; animation: rotateRing 15s linear infinite; }
+
+@keyframes rotateRing { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* スキルゲージ */
+.bar { height: 4px; background: rgba(255,255,255,0.1); margin: 8px 0; }
+.fill { height: 100%; background: var(--digi-cyan); box-shadow: 0 0 10px var(--digi-cyan); }
+
+/* ドック */
+.bottom-dock {
+    position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.9);
+    display: flex; justify-content: center; padding: 15px; border-top: 1px solid var(--digi-cyan);
+}
+
+.dock-btn { color: #fff; text-decoration: none; margin: 0 15px; font-family: var(--font-ui); font-size: 0.8rem; }
+.dock-btn:hover { color: var(--digi-cyan); }
+
+.hidden { opacity: 0; display: none; }
+@keyframes blink { 50% { opacity: 0; } }
